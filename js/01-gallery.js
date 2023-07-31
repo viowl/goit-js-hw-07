@@ -3,10 +3,7 @@ import { galleryItems } from './gallery-items.js';
 
 console.log(galleryItems);
 
-const instance = basicLightbox.create(`
-    <h1>Dynamic Content</h1>
-    <p>You can set the content of the lightbox with JS.</p>
-`)
+
 
 // instance.show()
 
@@ -34,6 +31,25 @@ gallery.addEventListener('click', (event) => {event.preventDefault()});
 // galleryLinks.forEach(link => {
 //     link.addEventListener('click')
 // })
-gallery.addEventListener('click', (e) => console.log(e.target))
+gallery.addEventListener('click', onClick);
+
+function onClick(e) {
+  const {target} = e;
+  if (!target.classList.contains('gallery__image')) {
+ return
+  } 
+  const original = target.dataset.source;
+  console.log(target)
+  const description = target.alt;
+
+}
+  
+  // const {original, description} = galleryItems;
+//   const instance = basicLightbox.create(`
+//     <img src="assets/images/image.png" width="800" height="600">
+// `)
+
+// instance.show()
+// }
 
 
