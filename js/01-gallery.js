@@ -39,9 +39,17 @@ function onClick(e) {
  return
   } 
   const original = target.dataset.source;
-  console.log(target)
   const description = target.alt;
 
+  const instance = basicLightbox.create(`
+  <img
+  class="gallery__image"
+  src="${original}"
+  alt="${description}"
+/>
+`)
+
+instance.show()
 }
   
   // const {original, description} = galleryItems;
