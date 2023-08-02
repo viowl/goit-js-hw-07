@@ -1,25 +1,59 @@
+// import { galleryItems } from './gallery-items.js';
+// // Change code below this line
+
+// console.log(galleryItems);
+
+// const markup = galleryItems.map(({preview, original, description}) => 
+// `<li class="gallery__item">
+// <a class="gallery__link" href="${original}">
+//   <img
+//     class="gallery__image"
+//     src="${preview}"
+//     alt="${description}"
+//   />
+// </a>
+// </li>`).join('')
+// // console.log(markup)
+
+// const gallery = document.querySelector('.gallery')
+
+
+// gallery.insertAdjacentHTML('beforeend', markup);
+
+// gallery.addEventListener('click', (event) => {event.preventDefault()});
+
+// gallery.addEventListener('click', onClick);
+
+
+
 import { galleryItems } from './gallery-items.js';
-// Change code below this line
 
-console.log(galleryItems);
+const gallery = document.querySelector('.gallery');
 
-const markup = galleryItems.map(({preview, original, description}) => 
-`<li class="gallery__item">
-<a class="gallery__link" href="${original}">
-  <img
-    class="gallery__image"
-    src="${preview}"
-    alt="${description}"
-  />
-</a>
-</li>`).join('')
-console.log(markup)
+// Создание разметки галереи
+const markup = galleryItems.map(({ preview, original, description }) =>
+  `<li class="gallery__item">
+    <a class="gallery__link" href="${original}">
+      <img
+        class="gallery__image"
+        src="${preview}"
+        alt="${description}"
+      />
+    </a>
+  </li>`).join('');
 
-const gallery = document.querySelector('.gallery')
-
-
+// Вставка разметки в список галереи
 gallery.insertAdjacentHTML('beforeend', markup);
 
-gallery.addEventListener('click', (event) => {event.preventDefault()});
+// Инициализация SimpleLightbox
+const lightbox = new SimpleLightbox('.gallery a', {
+  captions: true, // Включає підписи
+  captionType: 'attr', // Використовуємо атрибут alt для відображення підпису
+  captionsData: 'alt', // Використовуємо значення атрибута alt для підпису
+  captionDelay: 250, // Затримка перед показом підпису в мілісекундах
+});
 
-gallery.addEventListener('click', onClick);
+// Отмена действия по умолчанию при клике на ссылки внутри галереи
+gallery.addEventListener('click', (event) => {
+  event.preventDefault();
+});
